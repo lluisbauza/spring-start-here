@@ -7,22 +7,8 @@ import jakarta.annotation.PostConstruct;
 @Component
 public class Vehicle {
 
-    private String licensePlate;
-    private String brand;
-
-    @PostConstruct
-    public void init() {
-        this.licensePlate = "987qwe";
-        this.brand = "VW";
-    }
-
-    public Vehicle() {
-    }
-
-    public Vehicle(String brand, String licensePlate) {
-        this.brand = brand;
-        this.licensePlate = licensePlate;
-    }
+    private String licensePlate = "9987qwe";
+    private String brand = "VW";
 
     public String getLicensePlate() {
         return licensePlate;

@@ -10,7 +10,7 @@ import java.util.List;
 @ComponentScan(basePackages = "com.lluisbauza")
 public class ProjectConfig {
 
-    @Bean("vehicle2")
+    @Bean
     public Vehicle vehicle2() {
         var vehicle2 = new Vehicle();
         vehicle2.setLicensePlate("1234LMN");
