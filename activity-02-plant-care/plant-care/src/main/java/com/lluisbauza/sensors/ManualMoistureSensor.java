@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("Manual")
+@Qualifier("manual")
 public class ManualMoistureSensor implements MoistureSensor {
 
     @Override
     public int getMoisture(Plant plant) {
-        //random to simulate lecture
+        //random to simulate reading
         return (int) ((Math.random() * (101)));
     }
 

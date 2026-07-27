@@ -11,7 +11,7 @@ public class PlantCareService {
     private final MoistureSensor moistureSensor;
 
     //No @Autowired needed as there's only a constructor method.
-    public PlantCareService(@Qualifier("Automatic") MoistureSensor moistureSensor) {
+    public PlantCareService(@Qualifier("automatic") MoistureSensor moistureSensor) {
         this.moistureSensor = moistureSensor;
     }
 
@@ -24,7 +24,7 @@ public class PlantCareService {
         } else if (moisture > plant.getMaxMoisture()){
             return "Wait a bit longer.";
         } else {
-            return "Check the plant.";
+            return "The plant doesn't need water for now.";
         }
 
     }
