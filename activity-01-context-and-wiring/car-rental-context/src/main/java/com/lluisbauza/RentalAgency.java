@@ -17,10 +17,6 @@ public class RentalAgency {
         this.vehicles = vehicles;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
