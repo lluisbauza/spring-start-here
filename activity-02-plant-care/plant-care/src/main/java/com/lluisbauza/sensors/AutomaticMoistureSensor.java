@@ -12,6 +12,5 @@ public class AutomaticMoistureSensor implements MoistureSensor {
     public int getMoisture(Plant plant) {
         //random to simulate lecture
         return (int) ((Math.random() * (101)));
-
     }
 }

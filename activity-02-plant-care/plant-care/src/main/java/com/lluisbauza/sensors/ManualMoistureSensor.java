@@ -11,7 +11,7 @@ public class ManualMoistureSensor implements MoistureSensor {
     @Override
     public int getMoisture(Plant plant) {
         //random to simulate lecture
-        return (int) Math.random() * 100;
+        return (int) ((Math.random() * (101)));
     }
 
 }

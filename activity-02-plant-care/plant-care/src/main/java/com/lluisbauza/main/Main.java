@@ -31,11 +31,12 @@ public class Main {
             sc.nextLine();
             System.out.println();
 
-            var plant = new Plant(plantName, plantName, minMoisture, maxMoisture);
+            var plant = new Plant(plantName, minMoisture, maxMoisture);
             plants.add(plant);
         }
 
         plants.forEach(plant ->
-                System.out.println(plant.getPlantName() + ": " + plantCareService.analyze(plant)));
+                System.out.println(plant.getPlantName() + ": " +
+                        plantCareService.analyze(plant) + "(" + plant.getMoisture() + ")"));
     }
 }

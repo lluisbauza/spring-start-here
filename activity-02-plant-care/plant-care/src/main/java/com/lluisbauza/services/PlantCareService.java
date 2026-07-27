@@ -3,9 +3,9 @@ package com.lluisbauza.services;
 import com.lluisbauza.models.Plant;
 import com.lluisbauza.sensors.MoistureSensor;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PlantCareService {
 
     private final MoistureSensor moistureSensor;
@@ -17,6 +17,7 @@ public class PlantCareService {
 
     public String analyze(Plant plant) {
         int moisture = moistureSensor.getMoisture(plant);
+        plant.setMoisture(moisture);
 
         if (moisture < plant.getMinMoisture()){
             return "Water the plant.";
