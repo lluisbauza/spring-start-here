@@ -17,11 +17,11 @@ public class Plant {
         return plantName;
     }
 
-    public double getMinMoisture() {
+    public int getMinMoisture() {
         return minMoisture;
     }
 
-    public double getMaxMoisture() {
+    public int getMaxMoisture() {
         return maxMoisture;
     }
 
