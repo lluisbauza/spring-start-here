@@ -3,7 +3,12 @@ package com.lluisbauza.model;
 import com.lluisbauza.enums.Category;
 import com.lluisbauza.enums.Priority;
 import com.lluisbauza.enums.State;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class Incident {
 
     private int id;
@@ -13,13 +18,10 @@ public class Incident {
     private State state = State.OPEN;
     private Technician technician;
 
-    public Incident(int id, String description, Category category, Priority priority, State state, Technician technician) {
-        this.id = id;
+    public Incident(String description, Category category, Priority priority) {
         this.description = description;
         this.category = category;
         this.priority = priority;
-        this.state = state;
-        this.technician = technician;
     }
 
     public Technician getTechnician() {
