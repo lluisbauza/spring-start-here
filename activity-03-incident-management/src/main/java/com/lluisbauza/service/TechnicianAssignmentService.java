@@ -1,7 +1,10 @@
 package com.lluisbauza.service;
 
+import com.lluisbauza.enums.Priority;
+import com.lluisbauza.enums.State;
 import com.lluisbauza.model.Incident;
 import com.lluisbauza.model.Technician;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,8 +13,15 @@ import java.util.List;
 public class TechnicianAssignmentService {
 
     private final List<Technician> technicians;
+    private final NotificationService messageNotificationService;
+    private final NotificationService mailNotificationService;
 
-    public TechnicianAssignmentService(List<Technician> technicians) {
+    public TechnicianAssignmentService(
+            NotificationService messageNotificationService,
+            @Qualifier("mail") NotificationService mailNotificationService,
+            List<Technician> technicians) {
+        this.messageNotificationService = messageNotificationService;
+        this.mailNotificationService = mailNotificationService;
         this.technicians = technicians;
     }
 
@@ -21,7 +31,15 @@ public class TechnicianAssignmentService {
                 if (technician.isAvailable()) {
                     incident.setTechnician(technician);
                     technician.setAvailable(false);
+                    incident.setState(State.ASSIGNED);
+
+                    if (incident.getPriority() == Priority.HIGH) {
+                        mailNotificationService.sendNotification(incident);
+                    } else {
+                        messageNotificationService.sendNotification(incident);
+                    }
                     break;
+
                 } else {
                     throw new Exception("No technicians available at the moment. Try in a few minutes.");
                 }
