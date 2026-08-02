@@ -18,10 +18,7 @@ public class Incident {
     private State state = State.OPEN;
     private Technician technician;
 
-    public Incident(String description, Category category, Priority priority) {
-        this.description = description;
-        this.category = category;
-        this.priority = priority;
+    public Incident() {
     }
 
     public Technician getTechnician() {

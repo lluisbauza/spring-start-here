@@ -6,11 +6,13 @@ public class Technician {
 
     private String name;
     private Category category;
-    private String availability;
+    private boolean available;
 
+    public Technician() {
+    }
 
-    public Technician(String availability, Category category, String name) {
-        this.availability = availability;
+    public Technician(boolean available, Category category, String name) {
+        this.available = available;
         this.category = category;
         this.name = name;
     }
@@ -31,11 +33,11 @@ public class Technician {
         this.category = category;
     }
 
-    public String getAvailability() {
-        return availability;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
