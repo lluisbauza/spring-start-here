@@ -1,6 +1,6 @@
 package com.lluisbauza.config;
 
-import com.lluisbauza.enums.Category;
+import com.lluisbauza.model.Category;
 import com.lluisbauza.model.Technician;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

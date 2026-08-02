@@ -1,8 +1,8 @@
 package com.lluisbauza.factory;
 
 import com.lluisbauza.annotation.NewIncident;
-import com.lluisbauza.enums.Category;
-import com.lluisbauza.enums.Priority;
+import com.lluisbauza.model.Category;
+import com.lluisbauza.model.Priority;
 import com.lluisbauza.model.Incident;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;

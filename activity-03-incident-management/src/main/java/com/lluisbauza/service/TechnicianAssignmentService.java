@@ -1,8 +1,8 @@
 package com.lluisbauza.service;
 
 import com.lluisbauza.annotation.TechAssign;
-import com.lluisbauza.enums.Priority;
-import com.lluisbauza.enums.State;
+import com.lluisbauza.model.Priority;
+import com.lluisbauza.model.State;
 import com.lluisbauza.exception.TechnicianUnavailableException;
 import com.lluisbauza.model.Incident;
 import com.lluisbauza.model.Technician;

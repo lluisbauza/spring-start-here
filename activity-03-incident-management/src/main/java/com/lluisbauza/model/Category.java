@@ -1,4 +1,4 @@
-package com.lluisbauza.enums;
+package com.lluisbauza.model;
 
 public enum Category {
     HARDWARE,

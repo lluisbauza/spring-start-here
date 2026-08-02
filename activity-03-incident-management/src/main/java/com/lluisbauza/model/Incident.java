@@ -1,8 +1,5 @@
 package com.lluisbauza.model;
 
-import com.lluisbauza.enums.Category;
-import com.lluisbauza.enums.Priority;
-import com.lluisbauza.enums.State;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

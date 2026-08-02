@@ -1,7 +1,5 @@
 package com.lluisbauza.model;
 
-import com.lluisbauza.enums.Category;
-
 public class Technician {
 
     private String name;

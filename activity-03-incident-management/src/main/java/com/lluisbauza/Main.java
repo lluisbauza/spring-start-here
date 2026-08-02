@@ -1,8 +1,8 @@
-package com.lluisbauza.main;
+package com.lluisbauza;
 
 import com.lluisbauza.config.ProjectConfig;
-import com.lluisbauza.enums.Category;
-import com.lluisbauza.enums.Priority;
+import com.lluisbauza.model.Category;
+import com.lluisbauza.model.Priority;
 import com.lluisbauza.factory.IncidentFactory;
 import com.lluisbauza.repository.IncidentRepository;
 import com.lluisbauza.service.IncidentReportService;
