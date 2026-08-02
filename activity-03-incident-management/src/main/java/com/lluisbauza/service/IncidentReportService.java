@@ -1,11 +1,9 @@
 package com.lluisbauza.service;
 
-import com.lluisbauza.model.Incident;
 import com.lluisbauza.repository.IncidentRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @Lazy

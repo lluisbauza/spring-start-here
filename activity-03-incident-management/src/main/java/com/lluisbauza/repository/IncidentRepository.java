@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public class IncidentRepository {
 
-    List<Incident> incidents = new ArrayList<>();
+    private List<Incident> incidents = new ArrayList<>();
 
     public void addIncident(Incident incident) {
         incidents.add(incident);

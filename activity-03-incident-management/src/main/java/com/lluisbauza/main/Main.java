@@ -4,13 +4,10 @@ import com.lluisbauza.config.ProjectConfig;
 import com.lluisbauza.enums.Category;
 import com.lluisbauza.enums.Priority;
 import com.lluisbauza.factory.IncidentFactory;
-import com.lluisbauza.model.Incident;
 import com.lluisbauza.repository.IncidentRepository;
 import com.lluisbauza.service.IncidentReportService;
 import com.lluisbauza.service.TechnicianAssignmentService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.util.ArrayList;
 
 /**
  * Activity 3 - Incident Management.
@@ -32,8 +29,6 @@ public class Main {
         var incidentFactory = context.getBean(IncidentFactory.class);
         var technicianAssignmentService = context.getBean(TechnicianAssignmentService.class);
         var incidentRepository = context.getBean(IncidentRepository.class);
-
-        var incidents = new ArrayList<Incident>();
 
         var incident1 = incidentFactory.createIncident("Can't log in", Category.ACCESS, Priority.HIGH);
         var incident2 = incidentFactory.createIncident("Printer won't print", Category.HARDWARE, Priority.LOW);
