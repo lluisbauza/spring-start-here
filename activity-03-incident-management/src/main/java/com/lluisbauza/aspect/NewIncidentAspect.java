@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @Component
 public class NewIncidentAspect {
 
-    private Logger logger = Logger.getLogger(IncidentFactory.class.getName());
+    private final Logger logger = Logger.getLogger(NewIncidentAspect.class.getName());
 
     @Around("@annotation(com.lluisbauza.annotation.NewIncident)")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {

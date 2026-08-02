@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
-@ComponentScan(basePackages = {"com.lluisbauza.model", "com.lluisbauza.service", "com.lluisbauza.factory", "com.lluisbauza.aspect"})
+@ComponentScan(basePackages = {"com.lluisbauza"})
 @EnableAspectJAutoProxy
 public class ProjectConfig {
     @Bean
-    Technician Albert() {
+    Technician albert() {
         var technician = new Technician();
         technician.setName("Albert");
         technician.setCategory(Category.ACCESS);
@@ -21,7 +21,7 @@ public class ProjectConfig {
     }
 
     @Bean
-    Technician Hubert() {
+    Technician hubert() {
         var technician = new Technician();
         technician.setName("Hubert");
         technician.setCategory(Category.HARDWARE);
@@ -30,7 +30,7 @@ public class ProjectConfig {
     }
 
     @Bean
-    Technician Sonya() {
+    Technician sonya() {
         var technician = new Technician();
         technician.setName("Sonya");
         technician.setCategory(Category.SOFTWARE);

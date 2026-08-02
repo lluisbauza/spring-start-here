@@ -15,7 +15,7 @@ public class IncidentFactory {
 
     private final ObjectProvider<Incident> incidentProvider;
     private final AtomicInteger count = new AtomicInteger(0);
-    private Logger logger = Logger.getLogger(IncidentFactory.class.getName());
+    private final Logger logger = Logger.getLogger(IncidentFactory.class.getName());
 
     public IncidentFactory(ObjectProvider<Incident> incidentProvider) {
         this.incidentProvider = incidentProvider;

@@ -5,30 +5,45 @@ import com.lluisbauza.enums.Category;
 import com.lluisbauza.enums.Priority;
 import com.lluisbauza.factory.IncidentFactory;
 import com.lluisbauza.model.Incident;
+import com.lluisbauza.repository.IncidentRepository;
 import com.lluisbauza.service.IncidentReportService;
 import com.lluisbauza.service.TechnicianAssignmentService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.ArrayList;
 
+/**
+ * Activity 3 - Incident Management.
+ *
+ * Demonstrates incident creation and management using Spring Core concepts
+ * such as dependency injection, bean scopes and AOP.
+ *
+ * - Uses hardcoded data to test the application flow.
+ * - Uses basic console output and logging for demonstration purposes.
+ * - Demonstrates singleton and prototype bean scopes.
+ *
+ * @author Lluís Bauzá
+ */
+
 public class Main {
     static void main() {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
         var incidentFactory = context.getBean(IncidentFactory.class);
-
         var technicianAssignmentService = context.getBean(TechnicianAssignmentService.class);
+        var incidentRepository = context.getBean(IncidentRepository.class);
+
         var incidents = new ArrayList<Incident>();
 
         var incident1 = incidentFactory.createIncident("Can't log in", Category.ACCESS, Priority.HIGH);
         var incident2 = incidentFactory.createIncident("Printer won't print", Category.HARDWARE, Priority.LOW);
         var incident3 = incidentFactory.createIncident("Blue screen", Category.SOFTWARE, Priority.MEDIUM);
 
-        incidents.add(incident1);
-        incidents.add(incident2);
-        incidents.add(incident3);
+        incidentRepository.addIncident(incident1);
+        incidentRepository.addIncident(incident2);
+        incidentRepository.addIncident(incident3);
 
-        incidents.forEach(incident -> {
+        incidentRepository.getIncidents().forEach(incident -> {
             System.out.print(incident.getId() + " ");
             try {
                 technicianAssignmentService.assignTechnician(incident);
@@ -38,7 +53,7 @@ public class Main {
         });
 
         var incidentReportService = context.getBean(IncidentReportService.class);
-        incidentReportService.generateReport(incidents);
+        incidentReportService.generateReport();
 
         context.close();
     }
