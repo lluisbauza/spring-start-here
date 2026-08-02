@@ -5,6 +5,7 @@ import com.lluisbauza.enums.Category;
 import com.lluisbauza.enums.Priority;
 import com.lluisbauza.factory.IncidentFactory;
 import com.lluisbauza.model.Incident;
+import com.lluisbauza.service.IncidentReportService;
 import com.lluisbauza.service.TechnicianAssignmentService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -15,6 +16,7 @@ public class Main {
         var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
         var incidentFactory = context.getBean(IncidentFactory.class);
+
         var technicianAssignmentService = context.getBean(TechnicianAssignmentService.class);
         var incidents = new ArrayList<Incident>();
 
@@ -27,14 +29,16 @@ public class Main {
         incidents.add(incident3);
 
         incidents.forEach(incident -> {
-            System.out.println(incident.getId());
+            System.out.print(incident.getId() + " ");
             try {
                 technicianAssignmentService.assignTechnician(incident);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(incident.getTechnician().getName());
         });
+
+        var incidentReportService = context.getBean(IncidentReportService.class);
+        incidentReportService.generateReport(incidents);
 
         context.close();
     }

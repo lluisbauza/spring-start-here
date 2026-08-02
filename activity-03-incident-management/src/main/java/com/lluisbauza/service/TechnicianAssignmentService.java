@@ -34,9 +34,9 @@ public class TechnicianAssignmentService {
                     incident.setState(State.ASSIGNED);
 
                     if (incident.getPriority() == Priority.HIGH) {
-                        mailNotificationService.sendNotification(incident);
+                        mailNotificationService.sendNotification(incident, technician);
                     } else {
-                        messageNotificationService.sendNotification(incident);
+                        messageNotificationService.sendNotification(incident, technician);
                     }
                     break;
 

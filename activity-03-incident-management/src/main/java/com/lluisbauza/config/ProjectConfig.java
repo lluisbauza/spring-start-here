@@ -5,9 +5,11 @@ import com.lluisbauza.model.Technician;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
-@ComponentScan(basePackages = {"com.lluisbauza.model", "com.lluisbauza.service", "com.lluisbauza.factory"})
+@ComponentScan(basePackages = {"com.lluisbauza.model", "com.lluisbauza.service", "com.lluisbauza.factory", "com.lluisbauza.aspect"})
+@EnableAspectJAutoProxy
 public class ProjectConfig {
     @Bean
     Technician Albert() {

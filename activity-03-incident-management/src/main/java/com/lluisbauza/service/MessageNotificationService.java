@@ -1,18 +1,19 @@
 package com.lluisbauza.service;
 
 import com.lluisbauza.model.Incident;
+import com.lluisbauza.model.Technician;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @Primary
 @Qualifier("message")
 public class MessageNotificationService implements NotificationService {
 
     @Override
-    public void sendNotification(Incident incident) {
-        System.out.println("> MESSAGE: Technician has been assigned - Incident nº" + incident.getId());
+    public void sendNotification(Incident incident, Technician technician) {
+        System.out.println("> MESSAGE " + technician.getName() + " Technician has been assigned - Incident nº" + incident.getId());
     }
 
 }
