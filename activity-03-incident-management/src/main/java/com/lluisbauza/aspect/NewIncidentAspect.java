@@ -17,11 +17,17 @@ public class NewIncidentAspect {
     @Around("@annotation(com.lluisbauza.annotation.NewIncident)")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
 
+        long startTime = System.nanoTime();
+
         logger.info("Incident will be created.");
 
         Object result = joinPoint.proceed();
 
-        logger.info("Incident created.");
+        long endTime = System.nanoTime();
+
+        long totalTime = endTime - startTime;
+
+        logger.info("Incident created. Time taken: " + totalTime + " ns");
 
         return result;
     }

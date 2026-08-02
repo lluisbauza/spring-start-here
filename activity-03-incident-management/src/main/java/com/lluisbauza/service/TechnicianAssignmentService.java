@@ -1,5 +1,6 @@
 package com.lluisbauza.service;
 
+import com.lluisbauza.annotation.TechAssign;
 import com.lluisbauza.enums.Priority;
 import com.lluisbauza.enums.State;
 import com.lluisbauza.model.Incident;
@@ -25,6 +26,7 @@ public class TechnicianAssignmentService {
         this.technicians = technicians;
     }
 
+    @TechAssign
     public void assignTechnician(Incident incident) throws Exception {
         for (Technician technician : technicians) {
             if (technician.getCategory() == incident.getCategory()) {
