@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
 
     @RequestMapping("/employee")
-    public String employee(
+    public String viewEmployee(
             @RequestParam String name,
             @RequestParam(required = false) String department,
             @RequestParam(defaultValue = "1") int accessLevel,
             Model page
     ) {
         page.addAttribute("name", name);
-        if (department != null) {
-            page.addAttribute("department", department);
-        }
+        page.addAttribute("department", department);
 
         if (accessLevel == 1) {
-            page.addAttribute("accessLevel", "Basic Access");
+            page.addAttribute("accessDescription", "Basic Access");
         } else if (accessLevel == 2) {
-            page.addAttribute("accessLevel", "Standard Access");
+            page.addAttribute("accessDescription", "Standard Access");
         }  else if (accessLevel == 3) {
-            page.addAttribute("accessLevel", "Full Access");
+            page.addAttribute("accessDescription", "Full Access");
+        } else {
+            page.addAttribute("accessDescription", "Invalid Access Level");
         }
 
         return "employee.html";
