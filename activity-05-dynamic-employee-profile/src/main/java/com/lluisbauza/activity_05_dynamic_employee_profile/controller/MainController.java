@@ -2,6 +2,7 @@ package com.lluisbauza.activity_05_dynamic_employee_profile.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,8 +14,7 @@ public class MainController {
             @RequestParam String name,
             @RequestParam(required = false) String department,
             @RequestParam(defaultValue = "1") int accessLevel,
-            Model page
-    ) {
+            Model page) {
         page.addAttribute("name", name);
         page.addAttribute("department", department);
 
@@ -28,6 +28,27 @@ public class MainController {
             page.addAttribute("accessDescription", "Invalid Access Level");
         }
 
+        return "employee.html";
+    }
+
+    @RequestMapping("/employee/{name}")
+    public String viewEmployee(
+            @PathVariable String name,
+            Model page) {
+        page.addAttribute("name", name);
+        page.addAttribute("department", "General");
+        page.addAttribute("accessDescription", "General Access");
+        return "employee.html";
+    }
+
+    @RequestMapping("/employee/{name}/{department}")
+    public String viewEmployee(
+            @PathVariable String name,
+            @PathVariable String department,
+            Model page) {
+        page.addAttribute("name", name);
+        page.addAttribute("department", department);
+        page.addAttribute("accessDescription", "General Access");
         return "employee.html";
     }
 
