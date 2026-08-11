@@ -13,12 +13,14 @@
       <th>TITLE</th>
       <th>CATEGORY</th>
       <th>PRIORITY</th>
+      <th>Check</th>
     </tr>
     <tr th:each="i: ${incidents}" >
       <td th:text="${i.id}"></td>
       <td th:text="${i.title}"></td>
       <td th:text="${i.category}"></td>
       <td th:text="${i.priority}"></td>
+      <td><a th:href="@{/incidents/{id}(id=${i.id})}">View</a></td>
     </tr>
   </table>
 

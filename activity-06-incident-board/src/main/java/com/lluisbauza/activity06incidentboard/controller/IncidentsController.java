@@ -5,8 +5,11 @@ import com.lluisbauza.activity06incidentboard.service.IncidentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 @Controller
 public class IncidentsController {
@@ -18,10 +21,18 @@ public class IncidentsController {
     }
 
     @GetMapping("/incidents")
-    public String getIncidents(Model model) {
+    public String getIncidents(
+            @RequestParam(required = false) String category,
+            Model model) {
 
         var incidents = incidentsService.getIncidents();
-        model.addAttribute("incidents", incidents);
+
+        if (category != null) {
+            var incidentsByCategory = incidentsService.getIncidentsByCategory(category);
+            model.addAttribute("incidents", incidentsByCategory);
+        } else {
+            model.addAttribute("incidents", incidents);
+        }
 
         return "incidents.html";
     }
@@ -39,5 +50,19 @@ public class IncidentsController {
         model.addAttribute("incidents", incidents);
 
         return "incidents.html";
+    }
+
+    @GetMapping("/incidents/{id}")
+    public String getIncidentById(@PathVariable int id, Model model) {
+
+        Optional<Incident> incident = incidentsService.getIncidentById(id);
+
+        if (incident.isPresent()) {
+            model.addAttribute("incident", incident.get());
+            return "incident.html";
+        } else {
+            return "notfound.html";
+        }
+
     }
 }

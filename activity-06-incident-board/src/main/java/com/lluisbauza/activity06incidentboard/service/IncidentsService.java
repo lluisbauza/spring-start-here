@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncidentsService {
@@ -26,5 +27,29 @@ public class IncidentsService {
 
     public List<Incident> getIncidents() {
         return incidents;
+    }
+
+    public Optional<Incident> getIncidentById(int id) {
+
+        for  (Incident incident : incidents) {
+            if(incident.getId() == id) {
+                return Optional.of(incident);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    public List<Incident> getIncidentsByCategory(String category) {
+
+        List<Incident> incidentsByCategory = new ArrayList<>();
+
+        for(Incident incident : incidents) {
+            if(incident.getCategory().equals(category)) {
+                incidentsByCategory.add(incident);
+            }
+        }
+
+        return incidentsByCategory;
     }
 }
