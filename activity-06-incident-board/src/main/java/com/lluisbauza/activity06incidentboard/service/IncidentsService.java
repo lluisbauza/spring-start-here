@@ -10,13 +10,7 @@ import java.util.Optional;
 
 @Service
 public class IncidentsService {
-
-    private final IncidentFactory incidentFactory;
-
-    public IncidentsService(IncidentFactory incidentFactory) {
-        this.incidentFactory = incidentFactory;
-    }
-
+    
     private List<Incident> incidents = new ArrayList<>();
 
     public void addIncident(Incident incident) {
