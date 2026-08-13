@@ -20,9 +20,7 @@ public class IncidentsService {
     private List<Incident> incidents = new ArrayList<>();
 
     public void addIncident(Incident incident) {
-        var createdIncident = incidentFactory.createIncident(incident.getTitle(), incident.getCategory(), incident.getPriority());
-
-        incidents.add(createdIncident);
+        incidents.add(incident);
     }
 
     public List<Incident> getIncidents() {

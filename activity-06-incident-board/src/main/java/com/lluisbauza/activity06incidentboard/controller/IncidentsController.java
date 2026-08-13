@@ -1,5 +1,6 @@
 package com.lluisbauza.activity06incidentboard.controller;
 
+import com.lluisbauza.activity06incidentboard.factory.IncidentFactory;
 import com.lluisbauza.activity06incidentboard.model.Incident;
 import com.lluisbauza.activity06incidentboard.service.IncidentsService;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class IncidentsController {
 
     private final IncidentsService incidentsService;
+    private final IncidentFactory incidentFactory;
 
-    public IncidentsController(IncidentsService incidentsService) {
+    public IncidentsController(IncidentsService incidentsService, IncidentFactory incidentFactory) {
         this.incidentsService = incidentsService;
+        this.incidentFactory = incidentFactory;
     }
 
     @GetMapping("/incidents")
@@ -43,7 +46,7 @@ public class IncidentsController {
             @RequestParam String category,
             @RequestParam String priority,
             Model model) {
-        Incident incident = new Incident(title, category, priority);
+        Incident incident = incidentFactory.createIncident(title, category, priority);
         incidentsService.addIncident(incident);
 
         var incidents = incidentsService.getIncidents();
