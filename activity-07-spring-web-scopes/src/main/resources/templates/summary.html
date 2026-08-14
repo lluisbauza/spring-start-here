@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Summary</title>
+</head>
+<body>
+    <p th:text="'You have submited ' + ${ratingCount} + ' ratings.'"></p>
+    <a href="/summary?reset">Reset</a>
+</body>
+</html>

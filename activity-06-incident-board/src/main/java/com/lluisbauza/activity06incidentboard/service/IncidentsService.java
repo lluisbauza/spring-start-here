@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class IncidentsService {
-    
+
     private List<Incident> incidents = new ArrayList<>();
 
     public void addIncident(Incident incident) {
