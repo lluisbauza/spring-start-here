@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lluisbauza</groupId>
-    <artifactId>activity-04-spring-boot-mvc</artifactId>
+    <artifactId>activity-04-technical-dashboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>activity-04-spring-boot-mvc</name>
     <description>activity-04-spring-boot-mvc</description>
