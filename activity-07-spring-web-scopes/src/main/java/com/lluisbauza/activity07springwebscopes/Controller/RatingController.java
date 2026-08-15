@@ -2,6 +2,7 @@ package com.lluisbauza.activity07springwebscopes.Controller;
 
 import com.lluisbauza.activity07springwebscopes.Service.RatingCountService;
 import com.lluisbauza.activity07springwebscopes.Service.RatingProcessor;
+import com.lluisbauza.activity07springwebscopes.Service.TotalCountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,10 +14,15 @@ public class RatingController {
 
     private final RatingProcessor ratingProcessor;
     private final RatingCountService ratingCountService;
+    private final TotalCountService totalCountService;
 
-    public RatingController(RatingProcessor ratingProcessor, RatingCountService ratingCountService) {
+    public RatingController(
+            RatingProcessor ratingProcessor,
+            RatingCountService ratingCountService,
+            TotalCountService totalCountService) {
         this.ratingProcessor = ratingProcessor;
         this.ratingCountService = ratingCountService;
+        this.totalCountService = totalCountService;
     }
 
     @GetMapping("/rating")
@@ -47,7 +53,11 @@ public class RatingController {
         if (reset != null){
             ratingCountService.setCount(0);
         }
+
         model.addAttribute("ratingCount", ratingCountService.getCount());
+        model.addAttribute("totalRatingCount", totalCountService.getTotalCount());
+        model.addAttribute("averageRating", totalCountService.getAverageRating());
+
         return "summary.html";
     }
 

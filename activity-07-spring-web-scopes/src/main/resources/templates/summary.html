@@ -7,5 +7,7 @@
 <body>
     <p th:text="'You have submited ' + ${ratingCount} + ' ratings.'"></p>
     <a href="/summary?reset">Reset</a>
+    <p th:text="'Total ratings ' + ${totalRatingCount}"></p>
+    <p th:text="'Average rating ' + ${averageRating}"></p>
 </body>
 </html>
