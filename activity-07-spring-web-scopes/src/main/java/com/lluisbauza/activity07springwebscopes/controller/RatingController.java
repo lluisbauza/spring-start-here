@@ -1,8 +1,8 @@
-package com.lluisbauza.activity07springwebscopes.Controller;
+package com.lluisbauza.activity07springwebscopes.controller;
 
-import com.lluisbauza.activity07springwebscopes.Service.RatingCountService;
-import com.lluisbauza.activity07springwebscopes.Service.RatingProcessor;
-import com.lluisbauza.activity07springwebscopes.Service.TotalCountService;
+import com.lluisbauza.activity07springwebscopes.service.RatingCountService;
+import com.lluisbauza.activity07springwebscopes.service.RatingProcessor;
+import com.lluisbauza.activity07springwebscopes.service.TotalCountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,9 +38,14 @@ public class RatingController {
             Model model
     ) {
 
-        if(ratingProcessor.validateRating(agentName, rating, comment)) {
-            model.addAttribute("message", "Rating submitted");
-            return "redirect:/summary";
+        ratingProcessor.setAgentName(agentName);
+        ratingProcessor.setRating(rating);
+        ratingProcessor.setComment(comment);
+
+        if (ratingProcessor.isValid()) {
+            ratingCountService.increment();
+            totalCountService.increment();
+            totalCountService.addRating(rating);
         } else {
             model.addAttribute("message", "Invalid rating");
         }

@@ -1,4 +1,4 @@
-package com.lluisbauza.activity07springwebscopes.Service;
+package com.lluisbauza.activity07springwebscopes.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
