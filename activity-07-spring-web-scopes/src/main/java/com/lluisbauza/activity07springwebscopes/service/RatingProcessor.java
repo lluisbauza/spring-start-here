@@ -16,7 +16,9 @@ public class RatingProcessor {
     public void setComment(String comment) { this.comment = comment; }
 
     public boolean isValid() {
-        return rating > 0 && rating <= 5;
+        return rating > 0 && rating <= 5
+                && agentName != null && !agentName.isBlank();
+
     }
 
 }

@@ -46,10 +46,11 @@ public class RatingController {
             ratingCountService.increment();
             totalCountService.increment();
             totalCountService.addRating(rating);
-        } else {
-            model.addAttribute("message", "Invalid rating");
+
+            return "redirect:/summary";
         }
 
+        model.addAttribute("message", "Invalid rating");
         return "rating.html";
     }
 
