@@ -44,13 +44,9 @@ public class ProductController {
     }
 
     @GetMapping(value = "/api/products", params = "category")
-    public ResponseEntity<List> getProductsByCategory(@RequestParam(required = false) String category) {
+    public ResponseEntity<List> getProductsByCategory(@RequestParam String category) {
 
         List<Product> productsByCategory = productService.getProductsByCategory(category);
-
-        if (productsByCategory.isEmpty()) {
-            productsByCategory = productService.getProducts();
-        }
 
         int count = productsByCategory.size();
 
@@ -63,7 +59,7 @@ public class ProductController {
     @PostMapping("/api/products")
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
 
-        var createdProduct = productFactory.createProduct(product.getName(), product.getCategory(), product.getPrice(), product.getStock());
+        var createdProduct = productService.createProduct(product);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)

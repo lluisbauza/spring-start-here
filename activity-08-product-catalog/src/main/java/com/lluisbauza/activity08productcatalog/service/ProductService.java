@@ -1,6 +1,7 @@
 package com.lluisbauza.activity08productcatalog.service;
 
 import com.lluisbauza.activity08productcatalog.exception.ProductNotFoundException;
+import com.lluisbauza.activity08productcatalog.factory.ProductFactory;
 import com.lluisbauza.activity08productcatalog.model.Product;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,11 @@ import java.util.List;
 public class ProductService {
 
     private List<Product> products = new ArrayList<>();
+    private ProductFactory productFactory;
+
+    public ProductService(ProductFactory productFactory) {
+        this.productFactory = productFactory;
+    }
 
     public void addProduct(Product product) {
         products.add(product);
@@ -37,10 +43,20 @@ public class ProductService {
         List<Product> productsByCategory = new ArrayList<>();
 
         for (Product product : products) {
-            if (product.getCategory().equals(category)) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
                 productsByCategory.add(product);
             }
         }
         return productsByCategory;
+    }
+
+    public Product createProduct(Product product) {
+
+        var createdProduct = productFactory.createProduct(product.getName(), product.getCategory(), product.getPrice(), product.getStock());
+
+        products.add(createdProduct);
+
+        return createdProduct;
+
     }
 }
