@@ -20,12 +20,7 @@ public class ProductController {
         this.productFactory = productFactory;
     }
 
-//    @GetMapping("/api/products")
-//    public List<Product> getProducts() {
-//        return productService.getProducts();
-//    }
-
-    @GetMapping("/api/products")
+    @GetMapping(value = "/api/products", params = "!category")
     public ResponseEntity<List> getProducts() {
 
         var products = productService.getProducts();
@@ -48,19 +43,7 @@ public class ProductController {
 
     }
 
-//    @GetMapping("/api/products")
-//    public List<Product> getProductsByCategory(@RequestParam(required = false) String category) {
-//        List<Product> productsByCategory = productService.getProductsByCategory(category);
-//
-//        if (productsByCategory.isEmpty()) {
-//            return productService.getProducts();
-//        }
-//
-//        return productsByCategory;
-//
-//    }
-
-    @GetMapping("/api/products")
+    @GetMapping(value = "/api/products", params = "category")
     public ResponseEntity<List> getProductsByCategory(@RequestParam(required = false) String category) {
 
         List<Product> productsByCategory = productService.getProductsByCategory(category);

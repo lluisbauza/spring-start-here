@@ -1,5 +1,6 @@
 package com.lluisbauza.activity08productcatalog.factory;
 
+import com.lluisbauza.activity08productcatalog.exception.ProductNotFoundException;
 import com.lluisbauza.activity08productcatalog.model.Product;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;
@@ -18,9 +19,14 @@ public class ProductFactory {
     }
 
     public Product createProduct(String name, String category, BigDecimal price, Integer stock) {
+
+        if (price.compareTo(BigDecimal.ZERO) <= 0 || stock < 0 ) {
+            throw new ProductNotFoundException("Price or stock out of range.");
+        }
+
         Product product = productProvider.getObject();
 
-        product.setId(Long.valueOf(count.incrementAndGet()));
+        product.setId((long) count.incrementAndGet());
         product.setName(name);
         product.setCategory(category);
         product.setPrice(price);
