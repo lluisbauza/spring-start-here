@@ -20,6 +20,7 @@ public class ProductFactory {
     public Product createProduct(String name, String category, BigDecimal price, Integer stock) {
         Product product = productProvider.getObject();
 
+        product.setId(Long.valueOf(count.incrementAndGet()));
         product.setName(name);
         product.setCategory(category);
         product.setPrice(price);
