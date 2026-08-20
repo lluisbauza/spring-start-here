@@ -11,15 +11,11 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    private List<Product> products = new ArrayList<>();
-    private ProductFactory productFactory;
+    private final List<Product> products = new ArrayList<>();
+    private final ProductFactory productFactory;
 
     public ProductService(ProductFactory productFactory) {
         this.productFactory = productFactory;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
     }
 
     public List<Product> getProducts() {

@@ -1,6 +1,7 @@
 package com.lluisbauza.activity08productcatalog.bootstrap;
 
 import com.lluisbauza.activity08productcatalog.factory.ProductFactory;
+import com.lluisbauza.activity08productcatalog.model.Product;
 import com.lluisbauza.activity08productcatalog.service.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -21,13 +22,13 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        var product1 = productFactory.createProduct("Laptop", "Office", new BigDecimal("999.99"), 10);
-        var product2 = productFactory.createProduct("Phone", "Mobile", new BigDecimal("899.99"), 15);
-        var product3 = productFactory.createProduct("Printer", "Office", new BigDecimal("399.99"), 20);
+        var product1 = new Product("Laptop", "Office", new BigDecimal("999.99"), 10);
+        var product2 = new Product("Phone", "Mobile", new BigDecimal("899.99"), 15);
+        var product3 = new Product("Printer", "Office", new BigDecimal("399.99"), 20);
 
-        productService.addProduct(product1);
-        productService.addProduct(product2);
-        productService.addProduct(product3);
+        productService.createProduct(product1);
+        productService.createProduct(product2);
+        productService.createProduct(product3);
 
     }
 }

@@ -19,7 +19,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/api/products", params = "!category")
-    public ResponseEntity<List> getProducts() {
+    public ResponseEntity<List<Product>> getProducts() {
 
         var products = productService.getProducts();
         int count = products.size();
@@ -42,7 +42,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/api/products", params = "category")
-    public ResponseEntity<List> getProductsByCategory(@RequestParam String category) {
+    public ResponseEntity<List<Product>> getProductsByCategory(@RequestParam String category) {
 
         List<Product> productsByCategory = productService.getProductsByCategory(category);
 
