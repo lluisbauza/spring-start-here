@@ -11,12 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class ProductFactory {
 
-    private final ObjectProvider<Product> productProvider;
     private final AtomicInteger count = new AtomicInteger(0);
-
-    public ProductFactory(ObjectProvider<Product> productProvider) {
-        this.productProvider = productProvider;
-    }
 
     public Product createProduct(String name, String category, BigDecimal price, Integer stock) {
 
@@ -24,7 +19,7 @@ public class ProductFactory {
             throw new DataOutOfRangeException("Price or stock out of range.");
         }
 
-        Product product = productProvider.getObject();
+        var product = new Product();
 
         product.setId((long) count.incrementAndGet());
         product.setName(name);

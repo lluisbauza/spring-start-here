@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
@@ -14,8 +11,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Getter
 @Setter
-@Component
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class Product {
 
     private Long id;
