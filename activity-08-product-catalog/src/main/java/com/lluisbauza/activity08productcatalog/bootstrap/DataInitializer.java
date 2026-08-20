@@ -19,13 +19,9 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        var product1 = new Product("Laptop", "Office", new BigDecimal("999.99"), 10);
-        var product2 = new Product("Phone", "Mobile", new BigDecimal("899.99"), 15);
-        var product3 = new Product("Printer", "Office", new BigDecimal("399.99"), 20);
-
-        productService.createProduct(product1);
-        productService.createProduct(product2);
-        productService.createProduct(product3);
+        productService.createProduct("Laptop", "Office", new BigDecimal("999.99"), 10);
+        productService.createProduct("Phone", "Mobile", new BigDecimal("899.99"), 15);
+        productService.createProduct("Printer", "Office", new BigDecimal("399.99"), 20);
 
     }
 }

@@ -5,6 +5,7 @@ import com.lluisbauza.activity08productcatalog.factory.ProductFactory;
 import com.lluisbauza.activity08productcatalog.model.Product;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ProductService {
         return products;
     }
 
-    public Product getProductById(long id) {
+    public Product getProductById(Long id) {
 
         for (Product product : products) {
             if (product.getId() == id) {
@@ -46,9 +47,9 @@ public class ProductService {
         return productsByCategory;
     }
 
-    public Product createProduct(Product product) {
+    public Product createProduct(String name, String category, BigDecimal price, Integer stock) {
 
-        var createdProduct = productFactory.createProduct(product.getName(), product.getCategory(), product.getPrice(), product.getStock());
+        var createdProduct = productFactory.createProduct(name, category, price, stock);
 
         products.add(createdProduct);
 
