@@ -1,6 +1,5 @@
 package com.lluisbauza.activity08productcatalog.controller;
 
-import com.lluisbauza.activity08productcatalog.factory.ProductFactory;
 import com.lluisbauza.activity08productcatalog.model.Product;
 import com.lluisbauza.activity08productcatalog.service.ProductService;
 import org.springframework.http.HttpStatus;

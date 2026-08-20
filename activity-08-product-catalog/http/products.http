@@ -1,0 +1,22 @@
+### GET all products
+GET http://localhost:8080/api/products
+
+### GET all products by category
+GET http://localhost:8080/api/products?category=Office
+
+### GET product by id
+GET http://localhost:8080/api/products/1
+
+### POST new product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name": "Keyboard",
+  "category": "Office",
+  "price": 89.99,
+  "stock": 40
+}
+
+### GET wrong product
+GET http://localhost:8080/api/products/999

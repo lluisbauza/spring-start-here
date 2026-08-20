@@ -1,6 +1,5 @@
 package com.lluisbauza.activity08productcatalog.bootstrap;
 
-import com.lluisbauza.activity08productcatalog.factory.ProductFactory;
 import com.lluisbauza.activity08productcatalog.model.Product;
 import com.lluisbauza.activity08productcatalog.service.ProductService;
 import org.springframework.boot.CommandLineRunner;
@@ -11,11 +10,9 @@ import java.math.BigDecimal;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private final ProductFactory productFactory;
     private final ProductService productService;
 
-    public DataInitializer(ProductFactory productFactory,  ProductService productService) {
-        this.productFactory = productFactory;
+    public DataInitializer(ProductService productService) {
         this.productService = productService;
     }
 
