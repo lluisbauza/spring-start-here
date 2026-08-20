@@ -13,11 +13,9 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    private final ProductFactory productFactory;
 
-    public ProductController(ProductService productService, ProductFactory productFactory) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
-        this.productFactory = productFactory;
     }
 
     @GetMapping(value = "/api/products", params = "!category")
