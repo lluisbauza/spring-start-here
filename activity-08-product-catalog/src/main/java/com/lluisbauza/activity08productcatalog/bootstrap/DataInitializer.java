@@ -1,6 +1,5 @@
 package com.lluisbauza.activity08productcatalog.bootstrap;
 
-import com.lluisbauza.activity08productcatalog.model.Product;
 import com.lluisbauza.activity08productcatalog.service.ProductService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

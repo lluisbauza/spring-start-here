@@ -26,7 +26,7 @@ public class ProductService {
     public Product getProductById(Long id) {
 
         for (Product product : products) {
-            if (product.getId() == id) {
+            if (product.getId().equals(id)) {
                 return product;
             }
         }

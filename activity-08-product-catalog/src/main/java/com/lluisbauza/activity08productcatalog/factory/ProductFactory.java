@@ -2,7 +2,6 @@ package com.lluisbauza.activity08productcatalog.factory;
 
 import com.lluisbauza.activity08productcatalog.exception.DataOutOfRangeException;
 import com.lluisbauza.activity08productcatalog.model.Product;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
