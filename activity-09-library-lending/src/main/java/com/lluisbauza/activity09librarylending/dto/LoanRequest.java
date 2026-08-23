@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class BookRequest {
+public class LoanRequest {
 
     private Integer bookId;
 

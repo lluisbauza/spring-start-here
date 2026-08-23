@@ -17,7 +17,6 @@ public class ExceptionControllerAdvice {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(error);
-
     }
 
     @ExceptionHandler(DataOutOfRangeException.class)

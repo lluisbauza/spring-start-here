@@ -13,12 +13,12 @@ public class Book {
     public Integer id;
     public String title;
     public String author;
-    public String availability;
+    public boolean isAvailable;
 
-    public Book(String title, String author, String availability) {
+    public Book(String title, String author, boolean isAvailable) {
         this.title = title;
         this.author = author;
-        this.availability = availability;
+        this.isAvailable = isAvailable;
     }
 
 }

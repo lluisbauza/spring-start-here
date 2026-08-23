@@ -11,7 +11,7 @@ public class BookFactory {
 
     private final AtomicInteger count = new AtomicInteger(0);
 
-    public Book createBook(String title, String author, String availability) {
+    public Book createBook(String title, String author, boolean isAvailable) {
 
         if (title == null || author == null || title.isEmpty() || author.isEmpty()) {
 
@@ -20,7 +20,7 @@ public class BookFactory {
         }
 
         Integer id = count.incrementAndGet();
-        return new Book(id, title, author, availability);
+        return new Book(id, title, author, isAvailable);
 
     }
 }
