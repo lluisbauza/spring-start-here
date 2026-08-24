@@ -4,14 +4,12 @@ import com.lluisbauza.activity09librarylending.dto.BookResponse;
 import com.lluisbauza.activity09librarylending.exception.BookNotFoundException;
 import com.lluisbauza.activity09librarylending.factory.BookFactory;
 import com.lluisbauza.activity09librarylending.model.Book;
-import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Getter
 @Service
 public class BookService {
 
@@ -20,6 +18,10 @@ public class BookService {
 
     public BookService(BookFactory bookFactory) {
         this.bookFactory = bookFactory;
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 
     public Book createBook(String title, String author, boolean isAvailable) {
@@ -33,11 +35,12 @@ public class BookService {
     public BookResponse getBookById(Integer id) {
 
         Optional<Book> foundBook = books.stream()
-                .filter(book -> book.getId() == id)
+                .filter(book -> book.getId().equals(id))
                 .findFirst();
 
         if (foundBook.isPresent()) {
             return new BookResponse(
+                    foundBook.get().getId(),
                     foundBook.get().getTitle(),
                     foundBook.get().getAuthor(),
                     foundBook.get().isAvailable());

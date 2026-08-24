@@ -20,7 +20,7 @@ public class LoanService {
 
         var book = bookService.getBookById(loanRequest.getBookId());
 
-         if(!book.isAvailable()){
+        if(!book.isAvailable()){
             throw new BookAlreadyLoanedException("Book with id " + loanRequest.getBookId() + " not available");
         }
 

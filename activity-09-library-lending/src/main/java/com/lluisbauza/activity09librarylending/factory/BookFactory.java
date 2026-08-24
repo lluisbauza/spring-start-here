@@ -15,7 +15,7 @@ public class BookFactory {
 
         if (title == null || author == null || title.isEmpty() || author.isEmpty()) {
 
-            throw new DataNotValidException("Title and author cannot be null");
+            throw new DataNotValidException("Title and author are empty or null");
 
         }
 

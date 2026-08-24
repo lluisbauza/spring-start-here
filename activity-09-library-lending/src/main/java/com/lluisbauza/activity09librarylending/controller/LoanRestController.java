@@ -24,10 +24,6 @@ public class LoanRestController {
 
         var loanResponse = loanService.makeLoan(loanRequest);
 
-        if (loanResponse == null) {
-            return ResponseEntity.badRequest().build();
-        }
-
         return ResponseEntity
                 .accepted()
                 .header("due-date", loanResponse.getReturnDate().toString())
