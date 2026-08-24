@@ -2,11 +2,10 @@ package com.lluisbauza.activity09librarylending.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter @Setter
+@Getter
 @AllArgsConstructor
 public class LoanResponse {
 

@@ -16,7 +16,7 @@ public class LoanService {
         this.bookService = bookService;
     }
 
-    public LoanResponse getLoanResponse(LoanRequest loanRequest) {
+    public LoanResponse makeLoan(LoanRequest loanRequest) {
 
         var book = bookService.getBookById(loanRequest.getBookId());
 

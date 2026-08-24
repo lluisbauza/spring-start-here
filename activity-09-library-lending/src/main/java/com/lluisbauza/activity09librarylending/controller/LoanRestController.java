@@ -22,7 +22,7 @@ public class LoanRestController {
     @PostMapping
     public ResponseEntity<LoanResponse> loanRequest(@RequestBody LoanRequest loanRequest) {
 
-        var loanResponse = loanService.getLoanResponse(loanRequest);
+        var loanResponse = loanService.makeLoan(loanRequest);
 
         if (loanResponse == null) {
             return ResponseEntity.badRequest().build();

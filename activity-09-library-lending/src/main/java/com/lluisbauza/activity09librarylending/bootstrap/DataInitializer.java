@@ -13,7 +13,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         bookService.createBook("Harry Potter", "J.K. Rowling", true);
         bookService.createBook("Game of Thrones", "George R. R. Martin", false);
