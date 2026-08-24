@@ -10,15 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Book {
 
-    public Integer id;
-    public String title;
-    public String author;
-    public boolean isAvailable;
-
-    public Book(String title, String author, boolean isAvailable) {
-        this.title = title;
-        this.author = author;
-        this.isAvailable = isAvailable;
-    }
+    private Integer id;
+    private String title;
+    private String author;
+    private boolean isAvailable;
 
 }

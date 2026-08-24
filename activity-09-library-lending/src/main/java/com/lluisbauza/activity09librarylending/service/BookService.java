@@ -1,7 +1,7 @@
 package com.lluisbauza.activity09librarylending.service;
 
 import com.lluisbauza.activity09librarylending.dto.BookResponse;
-import com.lluisbauza.activity09librarylending.exception.BookNotFound;
+import com.lluisbauza.activity09librarylending.exception.BookNotFoundException;
 import com.lluisbauza.activity09librarylending.factory.BookFactory;
 import com.lluisbauza.activity09librarylending.model.Book;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class BookService {
 
     private final BookFactory bookFactory;
-    private List<Book> books = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
 
     public BookService(BookFactory bookFactory) {
         this.bookFactory = bookFactory;
@@ -42,7 +42,7 @@ public class BookService {
                     foundBook.get().getAuthor(),
                     foundBook.get().isAvailable());
         } else {
-            throw new BookNotFound("Book not found");
+            throw new BookNotFoundException("Book not found");
         }
 
     }
@@ -50,7 +50,7 @@ public class BookService {
     public void setBookNotAvailable(Integer bookId) {
 
         for (Book book : books) {
-            if (book.getId() == bookId) {
+            if (book.getId().equals(bookId)) {
                 book.setAvailable(false);
             }
         }

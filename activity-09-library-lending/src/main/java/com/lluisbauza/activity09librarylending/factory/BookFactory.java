@@ -1,6 +1,6 @@
 package com.lluisbauza.activity09librarylending.factory;
 
-import com.lluisbauza.activity09librarylending.exception.DataNotValid;
+import com.lluisbauza.activity09librarylending.exception.DataNotValidException;
 import com.lluisbauza.activity09librarylending.model.Book;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class BookFactory {
 
         if (title == null || author == null || title.isEmpty() || author.isEmpty()) {
 
-            throw new DataNotValid("Title and author cannot be null");
+            throw new DataNotValidException("Title and author cannot be null");
 
         }
 

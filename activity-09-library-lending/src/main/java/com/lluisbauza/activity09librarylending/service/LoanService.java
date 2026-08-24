@@ -2,14 +2,15 @@ package com.lluisbauza.activity09librarylending.service;
 
 import com.lluisbauza.activity09librarylending.dto.LoanRequest;
 import com.lluisbauza.activity09librarylending.dto.LoanResponse;
-import com.lluisbauza.activity09librarylending.exception.BookAlreadyLoanedExeption;
-import com.lluisbauza.activity09librarylending.exception.BookNotFound;
+import com.lluisbauza.activity09librarylending.exception.BookAlreadyLoanedException;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class LoanService {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     public LoanService(BookService bookService) {
         this.bookService = bookService;
@@ -19,15 +20,13 @@ public class LoanService {
 
         var book = bookService.getBookById(loanRequest.getBookId());
 
-        if (book == null) {
-            throw new BookNotFound("Book with id " + loanRequest.getBookId() + " not found");
-        } else if(!book.isAvailable()){
-            throw new BookAlreadyLoanedExeption("Book with id " + loanRequest.getBookId() + " not available");
+         if(!book.isAvailable()){
+            throw new BookAlreadyLoanedException("Book with id " + loanRequest.getBookId() + " not available");
         }
 
         bookService.setBookNotAvailable(loanRequest.getBookId());
 
-        return new LoanResponse(loanRequest.getBookId(), book.getTitle());
+        return new LoanResponse(loanRequest.getBookId(), book.getTitle(), "Loan Confirmed.", LocalDate.now().plusDays(15));
 
     }
 
