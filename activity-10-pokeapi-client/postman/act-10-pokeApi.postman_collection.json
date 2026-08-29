@@ -1,0 +1,59 @@
+{
+  "info": {
+    "_postman_id": "487c274f-954e-4b26-acce-076e908b8eb0",
+    "name": "act-10-pokeApi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57438260"
+  },
+  "item": [
+    {
+      "name": "List(Limit/Offset)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/pokemon?limit=10&offset=3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemon"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "offset",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "pokemonByIdOrName",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/pokemon/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "pokemon",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
