@@ -16,26 +16,9 @@ public class PokemonService {
         this.pokemonClient = pokemonClient;
     }
 
-    public PokemonResponse getPokemonInfo(Integer id) {
+    public PokemonResponse getPokemonInfo(String idOrName) {
 
-        var pokemon = pokemonClient.searchPokemon(id);
-
-        var pokemonTypes = new ArrayList();
-        pokemon.types().forEach((type) -> pokemonTypes.add(type.type().name()));
-
-        return new PokemonResponse(
-                pokemon.id(),
-                pokemon.name(),
-                pokemon.height(),
-                pokemon.weight(),
-                pokemonTypes
-        );
-
-    }
-
-    public PokemonResponse getPokemonInfo(String name) {
-
-        var pokemon = pokemonClient.searchPokemon(name);
+        var pokemon = pokemonClient.searchPokemon(idOrName);
 
         var pokemonTypes = new ArrayList<String>();
         pokemon.types().forEach((type) -> pokemonTypes.add(type.type().name()));
@@ -43,8 +26,8 @@ public class PokemonService {
         return new PokemonResponse(
                 pokemon.id(),
                 pokemon.name(),
-                pokemon.weight(),
                 pokemon.height(),
+                pokemon.weight(),
                 pokemonTypes
         );
 

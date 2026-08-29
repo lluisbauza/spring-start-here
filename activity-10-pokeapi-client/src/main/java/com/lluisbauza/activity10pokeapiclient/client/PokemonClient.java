@@ -19,48 +19,28 @@ public class PokemonClient {
         this.restClient = restClient;
     }
 
-    public PokeApiResponse searchPokemon(Integer id) {
+    public PokeApiResponse searchPokemon(String idOrName) {
         return restClient
                 .get()
-                .uri("/pokemon/{id}", id)
+                .uri("/pokemon/{idOrName}", idOrName)
                 .retrieve()
                 .onStatus(
                         status -> status.value() == 404,
                         (request, response) -> {
-                            throw new PokemonNotFoundException("Pokemon with id " + id + " not found");
+                            throw new PokemonNotFoundException("Pokemon with id or name " + idOrName + " not found");
                         }
                 )
                 .onStatus(
                         status -> status.is5xxServerError(),
                         (request, response) -> {
-                            throw new PokeApiException("Server error while trying to fetch Pokemon with id " + id);
-                        }
-                )
-                .body(PokeApiResponse.class);
-    }
-
-    public PokeApiResponse searchPokemon(String name) {
-        return restClient
-                .get()
-                .uri("/pokemon/{name}", name)
-                .retrieve()
-                .onStatus(
-                        status -> status.value() == 404,
-                        (request, response) -> {
-                            throw new PokemonNotFoundException("Pokemon named " + name + " not found");
-                        }
-                )
-                .onStatus(
-                        status -> status.is5xxServerError(),
-                        (request, response) -> {
-                            throw new PokeApiException("Server error while trying to fetch Pokemon with name " + name);
+                            throw new PokeApiException("Server error while trying to fetch Pokemon with id or name " + idOrName);
                         }
                 )
                 .body(PokeApiResponse.class);
     }
 
     public List<PokeApiUnitResponse> getPokemonList(Integer limit, Integer offset) {
-        PokeApiListResponse request = restClient
+        PokeApiListResponse response = restClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/pokemon")
@@ -70,7 +50,7 @@ public class PokemonClient {
                 .retrieve()
                 .body(PokeApiListResponse.class);
 
-        return request.results();
+        return response.results();
     }
 
 }

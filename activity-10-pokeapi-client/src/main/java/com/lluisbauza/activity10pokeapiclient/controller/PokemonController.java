@@ -3,7 +3,9 @@ package com.lluisbauza.activity10pokeapiclient.controller;
 import com.lluisbauza.activity10pokeapiclient.dto.response.PokemonListResponse;
 import com.lluisbauza.activity10pokeapiclient.dto.response.PokemonResponse;
 import com.lluisbauza.activity10pokeapiclient.service.PokemonService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,16 +22,13 @@ public class PokemonController {
     public PokemonResponse getPokemons(
             @PathVariable String idOrName
     ) {
-        if (Integer.parseInt(idOrName) == 0) {
-            return pokemonService.getPokemonInfo(Integer.parseInt(idOrName));
-        }
         return pokemonService.getPokemonInfo(idOrName);
     }
 
     @GetMapping
     public PokemonListResponse getPokemons(
-            @RequestParam(required = false) Integer limit,
-            @RequestParam(required = false) Integer offset
+            @RequestParam(defaultValue = "0", required = false) Integer limit,
+            @RequestParam(defaultValue = "0", required = false) Integer offset
     ) {
         return pokemonService.getPokemons(limit, offset);
     }
