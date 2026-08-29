@@ -40,7 +40,7 @@ public class PokemonClient {
     }
 
     public List<PokeApiUnitResponse> getPokemonList(Integer limit, Integer offset) {
-        PokeApiListResponse response = restClient
+        PokeApiListResponse listResponse = restClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/pokemon")
@@ -48,9 +48,15 @@ public class PokemonClient {
                         .queryParam("offset", offset)
                         .build())
                 .retrieve()
+                .onStatus(
+                        status -> status.is5xxServerError(),
+                        (request, response) -> {
+                            throw new PokeApiException("Server error");
+                        }
+                )
                 .body(PokeApiListResponse.class);
 
-        return response.results();
+        return listResponse.results();
     }
 
 }
