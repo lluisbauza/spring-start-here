@@ -1,0 +1,85 @@
+{
+  "info": {
+    "_postman_id": "60f47fd9-c974-44c2-9576-deb0e891b7b5",
+    "name": "act-11-movie-theater-sale",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57438260"
+  },
+  "item": [
+    {
+      "name": "postNewSale",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"movieTitle\": \"Dune: Part Two\", \"ticketPrice\": 9.50, \"seatsSold\": 3}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/ticket-sales",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "ticket-sales"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "postNewSale Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"movieTitle\": \"Dune: Part One\", \"ticketPrice\": 8.50, \"seatsSold\": 90}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/ticket-sales",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "ticket-sales"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "findAllSales",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/ticket-sales",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "ticket-sales"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
