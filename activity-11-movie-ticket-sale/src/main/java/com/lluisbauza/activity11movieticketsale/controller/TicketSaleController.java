@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/ticket-sales")
 public class TicketSaleController {
 
-    private TicketSaleService ticketSaleService;
+    private final TicketSaleService ticketSaleService;
 
     public TicketSaleController(TicketSaleService ticketSaleService) {
         this.ticketSaleService = ticketSaleService;
