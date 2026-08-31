@@ -1,0 +1,141 @@
+@baseUrl = http://localhost:8080
+
+### =========================================================
+### CREATE SEATS
+### =========================================================
+
+### Create seat A1
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "A1",
+  "price": 8.50
+}
+
+### Create seat A2
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "A2",
+  "price": 8.50
+}
+
+### Create seat B1
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "B1",
+  "price": 10.00
+}
+
+### Create seat B2
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "B2",
+  "price": 10.00
+}
+
+
+### =========================================================
+### GET SEATS
+### =========================================================
+
+### Get all seats
+GET {{baseUrl}}/api/seats
+
+
+### Get seat by ID
+GET {{baseUrl}}/api/seats/1
+
+
+### Get available seats
+GET {{baseUrl}}/api/seats?available=true
+
+
+### =========================================================
+### BOOKING
+### =========================================================
+
+### Book seat with ID 1
+POST {{baseUrl}}/api/seats/1/booking
+
+
+### Try to book the same seat again
+### Expected: SeatAlreadyBookedException
+POST {{baseUrl}}/api/seats/1/booking
+
+
+### Book nonexistent seat
+### Expected: SeatNotFoundException
+POST {{baseUrl}}/api/seats/9999/booking
+
+
+### =========================================================
+### UPDATE PRICE
+### =========================================================
+
+### Change B1 price
+### Adjust ID if B1 is not ID 3 in your database
+PATCH {{baseUrl}}/api/seats/3/price
+Content-Type: application/json
+
+{
+  "price": 12.50
+}
+
+
+### Check updated seat
+GET {{baseUrl}}/api/seats/3
+
+
+### Invalid price: zero
+PATCH {{baseUrl}}/api/seats/3/price
+Content-Type: application/json
+
+{
+  "price": 0
+}
+
+
+### Invalid price: negative
+PATCH {{baseUrl}}/api/seats/3/price
+Content-Type: application/json
+
+{
+  "price": -5.00
+}
+
+
+### =========================================================
+### ERROR CASES
+### =========================================================
+
+### Get nonexistent seat
+### Expected: SeatNotFoundException
+GET {{baseUrl}}/api/seats/9999
+
+
+### Create seat with invalid price
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "C1",
+  "price": -2.00
+}
+
+
+### Try duplicate code
+### Expected: error because code should be unique
+POST {{baseUrl}}/api/seats
+Content-Type: application/json
+
+{
+  "code": "A1",
+  "price": 9.00
+}

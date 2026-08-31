@@ -20,5 +20,5 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     @Query("UPDATE Seat s SET s.price = :price WHERE s.id = :id")
     int updatePrice(@Param("price") BigDecimal price, @Param("id") Long id);
 
-
+    boolean existsByCode(String code);
 }
