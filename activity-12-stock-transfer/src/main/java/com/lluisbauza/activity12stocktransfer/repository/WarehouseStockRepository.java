@@ -1,6 +1,6 @@
 package com.lluisbauza.activity12stocktransfer.repository;
 
-import com.lluisbauza.activity12stocktransfer.model.WarehouseStockModel;
+import com.lluisbauza.activity12stocktransfer.model.WarehouseStock;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,17 +11,28 @@ import java.util.List;
 @Repository
 public class WarehouseStockRepository {
 
-    private final JdbcTemplate jdbcTemplate;
-    public WarehouseStockRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    private final JdbcTemplate jdbc;
+    public WarehouseStockRepository(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
     }
 
-    public List<WarehouseStockModel> findAll() {
+    public List<WarehouseStock> findAll() {
         String sql = "SELECT * FROM warehouse_stock";
 
-        RowMapper<WarehouseStockModel> rowMapper = new BeanPropertyRowMapper<>(WarehouseStockModel.class);
+        RowMapper<WarehouseStock> rowMapper = new BeanPropertyRowMapper<>(WarehouseStock.class);
 
-        return jdbcTemplate.query(sql, rowMapper);
+        return jdbc.query(sql, rowMapper);
 
+    }
+
+    public WarehouseStock findById(Integer id) {
+        String sql = "SELECT * FROM warehouse_stock WHERE id = ?";
+
+        return jdbc.queryForObject(sql, new WarehouseStockRowMapper(), id);
+    }
+
+    public void changeStock(Integer id, Integer quantity) {
+        String sql = "UPDATE warehouse_stock SET quantity = ? WHERE id = ?";
+        jdbc.update(sql, quantity, id);
     }
 }
