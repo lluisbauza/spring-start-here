@@ -1,6 +1,7 @@
 package com.lluisbauza.activity12stocktransfer.advice;
 
 import com.lluisbauza.activity12stocktransfer.dto.ErrorDetails;
+import com.lluisbauza.activity12stocktransfer.exception.InvalidQuantityException;
 import com.lluisbauza.activity12stocktransfer.exception.NotEnoughStockException;
 import com.lluisbauza.activity12stocktransfer.exception.SameWarehouseException;
 import com.lluisbauza.activity12stocktransfer.exception.WarehouseDoesNotExistException;
@@ -38,6 +39,16 @@ public class ExceptionControllerAdvice {
                 .badRequest()
                 .body(new ErrorDetails(e.getMessage()));
     }
+
+    @ExceptionHandler(InvalidQuantityException.class)
+    public ResponseEntity<ErrorDetails> handleInvalidQuantity(
+            InvalidQuantityException e) {
+
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorDetails(e.getMessage()));
+    }
+
 
 
 }

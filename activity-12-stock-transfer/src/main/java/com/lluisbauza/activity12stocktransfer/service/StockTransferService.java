@@ -1,5 +1,6 @@
 package com.lluisbauza.activity12stocktransfer.service;
 
+import com.lluisbauza.activity12stocktransfer.exception.InvalidQuantityException;
 import com.lluisbauza.activity12stocktransfer.exception.NotEnoughStockException;
 import com.lluisbauza.activity12stocktransfer.dto.StockTransferRequest;
 import com.lluisbauza.activity12stocktransfer.exception.SameWarehouseException;
@@ -45,7 +46,7 @@ public class StockTransferService {
         }
 
         if (stockTransferRequest.quantity() <= 0) {
-            throw new NotEnoughStockException("Quantity should be greater than 0");
+            throw new InvalidQuantityException("Quantity should be greater than 0");
         }
 
         if (stockTransferRequest.quantity() > sourceStock.getQuantity()) {
