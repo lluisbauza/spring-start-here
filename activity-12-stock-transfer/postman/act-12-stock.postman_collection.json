@@ -88,7 +88,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"sourceStockId\": 1,\n    \"destinationStockId\": 3,\n    \"quantity\": 4\n}",
+          "raw": "{\n    \"sourceStockId\": 3,\n    \"destinationStockId\": 1,\n    \"quantity\": 4\n}",
           "options": {
             "raw": {
               "language": "json"

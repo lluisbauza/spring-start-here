@@ -3,8 +3,8 @@ package com.lluisbauza.activity12stocktransfer.service;
 import com.lluisbauza.activity12stocktransfer.exception.InvalidQuantityException;
 import com.lluisbauza.activity12stocktransfer.exception.NotEnoughStockException;
 import com.lluisbauza.activity12stocktransfer.dto.StockTransferRequest;
-import com.lluisbauza.activity12stocktransfer.exception.SameWarehouseException;
-import com.lluisbauza.activity12stocktransfer.exception.WarehouseDoesNotExistException;
+import com.lluisbauza.activity12stocktransfer.exception.SameStockException;
+import com.lluisbauza.activity12stocktransfer.exception.WarehouseStockNotFoundException;
 import com.lluisbauza.activity12stocktransfer.model.WarehouseStock;
 import com.lluisbauza.activity12stocktransfer.repository.WarehouseStockRepository;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class StockTransferService {
 
         return warehouseStockRepository.findById(id)
                 .orElseThrow(() ->
-                        new WarehouseDoesNotExistException(
+                        new WarehouseStockNotFoundException(
                                 "Warehouse stock id not found"
                         )
                 );
@@ -42,7 +42,7 @@ public class StockTransferService {
         var destinationStock = getWarehouseStockById(stockTransferRequest.destinationStockId());
 
         if (sourceStock.getId().equals(destinationStock.getId())) {
-            throw new SameWarehouseException("Can't transfer stock in the same Warehouse.");
+            throw new SameStockException("Can't transfer stock in the same Warehouse.");
         }
 
         if (stockTransferRequest.quantity() <= 0) {
