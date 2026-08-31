@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class WarehouseStockRepository {
@@ -25,10 +26,12 @@ public class WarehouseStockRepository {
 
     }
 
-    public WarehouseStock findById(Integer id) {
+    public Optional<WarehouseStock> findById(Integer id) {
         String sql = "SELECT * FROM warehouse_stock WHERE id = ?";
 
-        return jdbc.queryForObject(sql, new WarehouseStockRowMapper(), id);
+        return jdbc.query(sql, new WarehouseStockRowMapper(), id)
+                .stream()
+                .findFirst();
     }
 
     public void changeStock(Integer id, Integer quantity) {
