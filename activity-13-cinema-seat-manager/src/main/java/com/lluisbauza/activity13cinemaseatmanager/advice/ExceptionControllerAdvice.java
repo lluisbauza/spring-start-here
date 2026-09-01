@@ -1,6 +1,7 @@
 package com.lluisbauza.activity13cinemaseatmanager.advice;
 
 import com.lluisbauza.activity13cinemaseatmanager.dto.ErrorDetails;
+import com.lluisbauza.activity13cinemaseatmanager.exception.PriceNotValidException;
 import com.lluisbauza.activity13cinemaseatmanager.exception.SeatAlreadyBookedException;
 import com.lluisbauza.activity13cinemaseatmanager.exception.SeatCodeAlreadyExistsException;
 import com.lluisbauza.activity13cinemaseatmanager.exception.SeatNotFoundException;
@@ -23,15 +24,23 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handleSeatNotAvailable(SeatAlreadyBookedException e) {
         return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.CONFLICT)
                 .body(new ErrorDetails(e.getMessage()));
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorDetails> handleSeatCodeAlreadyExists(SeatCodeAlreadyExistsException e) {
         return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ErrorDetails(e.getMessage()));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorDetails> handlePriceNotValid(PriceNotValidException e) {
+        return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorDetails(e.getMessage()));
     }
+
 
 }

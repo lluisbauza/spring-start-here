@@ -17,7 +17,10 @@ public class Seat {
     @Column(unique = true, nullable = false)
     private String code;
 
+    @Column(nullable = false)
     private BigDecimal price;
+
+    @Column(nullable = false)
     private boolean booked;
 
 }

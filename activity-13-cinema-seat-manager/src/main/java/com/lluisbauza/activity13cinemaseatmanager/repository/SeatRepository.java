@@ -15,7 +15,7 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
     List<Seat> findByBookedFalse();
     Seat findByCode(String code);
 
-    //personalized UPDATE operation with @Modigying and @Query, with JPQL
+    //personalized UPDATE operation with @Modifying and @Query, with JPQL
     @Modifying
     @Query("UPDATE Seat s SET s.price = :price WHERE s.id = :id")
     int updatePrice(@Param("price") BigDecimal price, @Param("id") Long id);
