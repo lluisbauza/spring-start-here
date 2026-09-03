@@ -1,9 +1,9 @@
-# spring-start-here
+# Spring Start Here
 Personal learning repository based on the book *Spring Start Here* by Laurentiu Spilca.
 
 This repository contains a collection of small, independent projects created to practise and consolidate Spring, Spring Core and Spring Boot concepts through progressive activities.
 
-As the repository progresses, the projects move from core Spring concepts such as dependency injection and bean management towards web applications, REST APIs, persistence, transactions and testing.
+Across the repository, the projects progress from core Spring concepts such as dependency injection and bean management towards web applications, REST APIs, persistence, transactions and testing.
 
 ## Technologies
 - Java
