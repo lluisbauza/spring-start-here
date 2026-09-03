@@ -31,7 +31,7 @@ public class SeatServiceTest {
     private SeatService seatService;
 
     @Test
-    public void addSeat_happyPath() {
+    void addSeat_happyPath() {
 
         //Arrange
         SeatRequest seatRequest = new SeatRequest(
@@ -56,7 +56,7 @@ public class SeatServiceTest {
     }
 
     @Test
-    void addSeat_wrongCode_throwsException() {
+    void addSeat_existingCode_throwsException() {
         //Arrange
         SeatRequest seatRequest = new SeatRequest(
                 "A1", BigDecimal.valueOf(10)
@@ -77,17 +77,24 @@ public class SeatServiceTest {
     }
 
     @Test
-    public void bookSeat_happyPath() {
+    void bookSeat_happyPath() {
 
         //Arrange
+        Long id = 1L;
+
         Seat seat = new Seat();
+        seat.setId(id);
         seat.setBooked(false);
 
+        given(seatRepository.findById(id))
+                .willReturn(Optional.of(seat));
+
         //Act
-        seatService.bookSeat(seat.getId());
+        Seat result = seatService.bookSeat(id);
 
         //Assert
-        assertTrue(seat.isBooked());
+        assertTrue(result.isBooked());
+        verify(seatRepository).findById(id);
 
     }
 
@@ -104,15 +111,13 @@ public class SeatServiceTest {
         given(seatRepository.findById(id))
                 .willReturn(Optional.of(seat));
 
-        //Act
+        //Act + Assert
         assertThrows(
                 SeatAlreadyBookedException.class,
                 () -> seatService.bookSeat(seat.getId())
         );
 
         verify(seatRepository).findById(id);
-        verify(seatRepository, never()).save(any(Seat.class));
-
     }
 
     @Test

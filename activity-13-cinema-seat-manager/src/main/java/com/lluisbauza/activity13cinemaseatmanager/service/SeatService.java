@@ -44,6 +44,10 @@ public class SeatService {
         return seatRepository.findAll();
     }
 
+    public List<Seat> getAvailableSeats() {
+        return seatRepository.findByBookedFalse();
+    }
+
     public Seat findSeatById(Long id) {
         return seatRepository.findById(id)
                 .orElseThrow(() -> new SeatNotFoundException("Seat with id " + id + " not found"));
