@@ -75,6 +75,10 @@ public class SeatService {
 
         var seat = findSeatById(id);
 
+        if  (seat == null) {
+            throw new SeatNotFoundException("Seat with id " + id + " not found");
+        }
+
         if (seat.isBooked()) {
             throw new SeatAlreadyBookedException("Seat with id " + id + " is already booked");
         }
